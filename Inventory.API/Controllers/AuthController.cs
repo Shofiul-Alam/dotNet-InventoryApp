@@ -30,8 +30,6 @@ namespace Inventory.API.Controllers
 
         public async Task<IActionResult> register(UserForRegisterDto userForRegisterDto)
         {
-            //validate request 
-
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
             if (await _repo.userExists(userForRegisterDto.Username))
