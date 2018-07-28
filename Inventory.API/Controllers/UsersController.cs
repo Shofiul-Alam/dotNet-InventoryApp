@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Inventory.API.Data;
@@ -38,6 +40,19 @@ namespace Inventory.API.Controllers
             var user = await _repo.GetUser(id);
             var userToReturn = _mapper.Map<UserForDetailsDto>(user);
             return Ok(userToReturn);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto) {
+            if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)) {
+                return Unauthorized();
+            };
+            var userFromRepo = await _repo.GetUser(id);
+            _mapper.Map(userForUpdateDto, userFromRepo);
+            if(await _repo.SaveAll()){
+                return NoContent();
+            }
+            throw new Exception($"Updating User {id} faild on save");
         }
     }
 }
