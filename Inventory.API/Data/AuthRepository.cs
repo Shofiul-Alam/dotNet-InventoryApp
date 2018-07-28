@@ -15,7 +15,7 @@ namespace Inventory.API.Data
         }
         public async Task<User> Login(string username, string password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => 
+            var user = await _context.Users.Include(u => u.Photos).FirstOrDefaultAsync(x => 
                         x.Username.ToLower() == username.ToLower());
             if(user == null) {
                 return null;

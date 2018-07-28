@@ -25,6 +25,8 @@ namespace Inventory.API.Helpers
                 });
             CreateMap<Photo, PhotosForDetailsDto>();
             CreateMap<UserForUpdateDto, User>();
+            CreateMap<Photo, PhotoForReturn>();
+            CreateMap<PhotoForCreationDto, Photo>();
         }
     }
 }
