@@ -1,7 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Http;
 
-namespace Inventory.API.Dtos
+namespace DatingApp.API.Dtos
 {
     public class PhotoForCreationDto
     {
@@ -10,7 +10,7 @@ namespace Inventory.API.Dtos
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
         public string PublicId { get; set; }
-        
+
         public PhotoForCreationDto()
         {
             DateAdded = DateTime.Now;

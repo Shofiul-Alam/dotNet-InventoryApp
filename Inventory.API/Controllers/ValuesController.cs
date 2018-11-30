@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Inventory.API.Data;
+using DatingApp.API.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Inventory.API.Controllers
+namespace DatingApp.API.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -17,10 +16,11 @@ namespace Inventory.API.Controllers
         private readonly DataContext _context;
         public ValuesController(DataContext context)
         {
-            this._context = context;
-
+            _context = context;
         }
-       [AllowAnonymous]
+
+        // GET api/values
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {
@@ -29,12 +29,14 @@ namespace Inventory.API.Controllers
             return Ok(values);
         }
 
-        [AllowAnonymous]
+        // GET api/values/5
+        [Authorize(Roles = "Member")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
-           var value = await _context.Values.FirstOrDefaultAsync(x => x.Id == id);
-           return Ok(value);
+            var value = await _context.Values.FirstOrDefaultAsync(x => x.Id == id);
+
+            return Ok(value);
         }
 
         // POST api/values

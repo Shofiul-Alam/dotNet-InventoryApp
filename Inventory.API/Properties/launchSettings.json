@@ -4,8 +4,8 @@
     "windowsAuthentication": false, 
     "anonymousAuthentication": true, 
     "iisExpress": {
-      "applicationUrl": "http://localhost:58900",
-      "sslPort": 44327
+      "applicationUrl": "http://localhost:18029",
+      "sslPort": 44350
     }
   },
   "profiles": {
@@ -13,12 +13,11 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "api/values",
-      "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Inventory.API": {
+    "DatingApp.API": {
       "commandName": "Project",
       "launchBrowser": false,
       "launchUrl": "api/values",
